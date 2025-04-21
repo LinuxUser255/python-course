@@ -511,8 +511,7 @@ my_empty_set = set() # THIS is what you want. This creates an empty set.
 Wrap up
 -----------------------------
 
-OK, In this lesson we learned lists,
-This includes:
+OK, In this lesson we learned
 
 - List Properties:
 - Zero-Based Indexing
