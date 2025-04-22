@@ -1,0 +1,21 @@
+# Lesson 6 Lists
+# --------------------
+
+# 1. Zero-Based Indexing
+# 2. Mutability
+# 3. Ordered lists
+# 4. Heterogeneity
+
+# ------------------------
+
+# 5. Retrieving individual elements
+# 6. Adding & Removing Elements
+# 7. Checking if an element exists
+# 8. Sorting
+# 9. Reversing
+
+# 10. Concatenation
+# 11. List Slicing
+# 12. Aggregators
+# 13. Helpers
+# 14. And some bonus content
