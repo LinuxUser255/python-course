@@ -232,6 +232,7 @@ reversed_list = list(reversed(my_list))
 
 **This approach is useful when you want to keep your original list intact while working with a reversed version of it.**
 
+<br>
 
 # Use Cases for List Concatenation and Multiplication
 
