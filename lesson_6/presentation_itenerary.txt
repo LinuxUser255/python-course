@@ -8,14 +8,15 @@
 
 # ------------------------
 
-# 5. Retrieving individual elements
-# 6. Adding & Removing Elements
-# 7. Checking if an element exists
-# 8. Sorting
-# 9. Reversing
+# 5. Creating Lists
+# 6. Retrieving individual elements
+# 7. Adding & Removing Elements
+# 8. Checking if an element exists
+# 9. Sorting
+# 10. Reversing
+# 11. Concatenation
+# 12. List Slicing
+# 13. Aggregators
+# 14. Helpers
+# 15. And some bonus content
 
-# 10. Concatenation
-# 11. List Slicing
-# 12. Aggregators
-# 13. Helpers
-# 14. And some bonus content
