@@ -405,42 +405,7 @@ List comprehensions are ideal for:
 4. Making code more readable and Pythonic  
 5. Improving performance for list creation operations  
   
-## Examples based on course content  
-```python  
-  
-# using a traditional for loop  
-my_list = []  
-for x in range(11):  
-    my_list.append(x)  
-print(my_list)  
-  
-my_list_comp = [x for x in range(10)]  
-print(my_list_comp)  
-  
-  
-# List comprehension is a concise way to create lists.  
-# writing a for loop inside a list  
-list_comp_one = [x for x in range(10)]  
-print(list_comp_one)  
-  
-# even numbers  
-list_comp_two = [x for x in range(10) if x % 2 == 0]  
-print(list_comp_two)  
-  
-# Gives a list of even numbers five times  
-list_comp_three = [[x for x in range(10) if x % 2 == 0] for _ in range(5) ]  
-print(list_comp_three)  
-  
-my_list = ['Joseph', 'Kelly', 'Eric', 'Tom']  
-# my_list[0]: 'Joseph'  
-# my_list[1]: 'Kelly'  
-# my_list[2]: 'Eric'  
-# my_list[3]: 'Tom'  
-  
-# element to add for every iteration of the loop  
-list_comp_four = [my_list[i] for i in range(len(my_list))]  
-print(list_comp_four)  
-```  
+
 
 <br>
   
@@ -487,7 +452,7 @@ List comprehensions and their variations (dictionary and set comprehensions) pro
 
 <br>
 
-## Examples based on course content  
+## List Comprehension Examples based on course content  
 ```python  
 # using a traditional for loop  
 my_list = []  
