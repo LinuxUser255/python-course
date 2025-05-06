@@ -30,26 +30,13 @@ main()
 
 ```
 
-1. `def main():` - This line defines a function named `main`. In Python, it's a convention to use a `main()` function as the entry point of a script.
+<br>
 
-2. `say_hello("Alice")` - Inside the `main()` function, we're calling the `say_hello()` function and passing the string "Alice" as an argument.
+Using **Name Guarding:**
 
-It's important to note that `say_hello()` is a decorated function in this script. It has the `@decorator_example` decorator applied to it. This means that when `say_hello("Alice")` is called, it actually goes through the `decorator_example` wrapper first.
-
-The execution flow when this `main()` function runs will be:
-
-1. The decorator's wrapper function is called.
-2. It prints "Decorator func: Before the function execution".
-3. The original `say_hello()` function is called with "Alice" as the argument.
-4. The `say_hello()` function prints "Hello, Alice!".
-5. The wrapper function then prints "Decorator func: After the function execution".
-
-This `main()` function is typically called at the end of the script using the `if __name__ == '__main__':` idiom, which ensures 
-that the code inside it only runs when the script is executed directly, 
-not when it's imported as a module.
+`if __name__=="__main__":`
 
 
-Using **Name Guarding** examples below
 ```python
 # name guarding
 
@@ -63,7 +50,46 @@ if __name__=="__main__":
 
 <br>
 
-_Decorators_
+### Use of decorators and name guarding
+
+```python
+#!/usr/bin/env python3
+
+"""
+How to use decorators in Python
+Basic example:
+"""
+
+# Define a decorator function
+def my_decorator(func):
+    def wrapper():
+        print("Before the function is called.")
+        func()
+        print("After the function is called.")
+    return wrapper
+
+# 1. Define the function with decorator
+@my_decorator
+def main():
+    # 2. Write the code to execute
+    print("This is the main function.")
+
+# 3. Call the main function
+if __name__ == "__main__":
+    main()
+
+```
+
+This `main()` function is typically called at the end of the script using the `if __name__ == '__main__':` idiom, which ensures 
+that the code inside it only runs when the script is executed directly, 
+not when it's imported as a module.
+
+
+
+
+<br>
+
+_Decorators and *args *kwargs function parameters_
 
 ```python
 #!/usr/bin/env python3
@@ -114,10 +140,11 @@ def main():
 if __name__=='__main__':
     main()
 ```
-_Note the `main()` function  is called using name guarding_
+
+<br>
 
 
-_not working
+### Example of fixing a bug
 ```python
 class FileManager:
     def __init__(self, filename, mode):
