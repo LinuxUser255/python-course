@@ -11,8 +11,22 @@ _Name Guarding_ ensures the entire script-code can only be run directly, not whe
 
 ```python
 
+#!/usr/bin/env python3
+
+"""
+The three steps to create a function in Python
+# 1. Define the function
+# 2. Write the code to execute
+# 3. Call the function
+"""
+
+# 1. Define the function
 def main():
-    say_hello("Alice")
+    # 2. Write the code to execute
+    print("This is the main function.")
+
+# 3. Call the function
+main()
 
 ```
 
