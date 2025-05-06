@@ -41,7 +41,6 @@ Using **Name Guarding** examples below
 
 def main():
     pass
-pass
 
 if __name__=="__main__":
     main()
