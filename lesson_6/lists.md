@@ -33,7 +33,40 @@ del my_list[1]
 # my_list[0]: 'Joseph'
 # my_list[2]: 'Eric'
 # my_list[3]: 'Tom' 
+
+# String methods to add and remove elements:
+# .append()
+# .insert()
+# .remove()
+# .pop()
+# .sort()
+# .sorted()
+# .reverse()
+
+# del[] an indexed element
 ```
+
+
+# String methods to add  remove, and sort elements:
+ 
+`.append()`
+
+ `.insert()`
+
+ `.remove()`
+
+ `.pop()`
+
+ `.sort()`
+
+ `.sorted()`
+
+ `.reverse()`
+
+ `del[] an indexed element`
+
+
+
 
 <br>
 

@@ -226,6 +226,20 @@ location = ['Raleigh', 'North Carolina', [85, 90, 78]]
 
 
 # 8.  ADD AND REMOVE ELEMENTS
+# String methods to add and remove elements:
+# .append()
+# .insert()
+# .remove()
+# .pop()
+# .sort()
+# .sorted()
+# .reverse()
+
+# del[] an indexed element
+
+
+
+
 # We will start with an empty list, but you could also start with a pre-populated list.
 add_and_remove_elements = []
 
