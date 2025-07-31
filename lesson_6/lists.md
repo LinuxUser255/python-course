@@ -272,6 +272,84 @@ my_list = [10, 4, 8, 3, 1]
 sorted_list = sorted(my_list)
 print(sorted_list)  # [1, 3, 4, 8, 10]
 ```
+Here's a modified version of your code that clearly shows the difference:
+
+## More on `sort()` vs `sorted()`
+Dev: Python List Methods
+
+The `sort()` method and `sorted()` function are both used for sorting lists in Python, but they have important differences in how they work and when you should use them.
+
+## Key Differences Between `sort()` and `sorted()`
+
+1. **Return Value**:
+   - `sort()` is a method that modifies the list in-place and returns `None`
+   - `sorted()` is a function that returns a new sorted list without modifying the original
+
+2. **Mutability**:
+   - `sort()` permanently changes the order of the original list
+   - `sorted()` leaves the original list unchanged
+
+3. **Applicability**:
+   - `sort()` only works on lists
+   - `sorted()` works on any iterable (lists, tuples, strings, etc.)
+
+## Why You Can Change the Order After Using `sort()`
+
+When you say:
+```python
+cars.sort()
+print(cars)  # Shows sorted list
+```
+
+The list is indeed permanently sorted. However, you can still modify the list afterward with other operations like `append()`, `insert()`, or by directly assigning new values. The "permanent" aspect means that the original order is lost - you can't revert to it unless you saved a copy beforehand.
+
+## When to Use `sort()` and `sort()`
+
+Use `sort()` when:
+- You don't need the original order anymore
+- You want to modify the list in-place (more memory efficient)
+- You're only working with lists
+
+Use `sorted()` when:
+- You need to preserve the original order
+- You're working with immutable sequences like tuples or strings
+- You want to use the sorted version temporarily without modifying the original
+
+#### Example to Demonstrate the Difference sort() vs sorted()
+
+
+```python
+# Example showing the difference between sort() and sorted()
+cars = ['Toyota', 'Honda', 'BMW', 'Kia', 'Ford']
+print('Original list of cars:')
+print(cars)
+print()
+
+# Using sorted() - creates a new sorted list without changing original
+print('Using sorted() - returns a new sorted list:')
+sorted_cars = sorted(cars)
+print(f"sorted_cars = {sorted_cars}")
+print(f"Original cars list = {cars}")  # Original list remains unchanged
+print()
+
+# Using sort() - modifies the original list
+print('Using sort() - modifies the original list:')
+cars.sort()
+print(f"After cars.sort(), cars = {cars}")  # Original list is now sorted
+print()
+
+# You can still modify the list after sorting
+print('Modifying the list after sorting:')
+cars.append('Mercedes')
+print(f"After adding 'Mercedes', cars = {cars}")  # List is modified but still sorted up to the new addition
+```
+
+This example demonstrates that:
+1. `sorted(cars)` returns a new sorted list without changing `cars`
+2. `cars.sort()` changes the original `cars` list
+3. You can still modify the list after sorting, but the sorting operation itself is "permanent" in the sense that the original order is lost
+
+The key takeaway is that "permanent" doesn't mean "immutable" - it just means the original order is gone.
 
 <br>
 
@@ -616,3 +694,32 @@ print(even_squares)  # [0, 4, 16, 36, 64]
 - Lists can be modified (add, remove, change elements)
 - Many built-in functions and methods make working with lists efficient
 - List comprehension provides a concise way to create and transform lists
+
+### Real life examples of using a List, indexing and slicing
+**A code snippet from**
+https://github.com/LinuxUser255/LinkedIn_Apply/blob/main/utils.py
+
+```python
+def jobs_to_pages(num_of_jobs: str) -> int:
+    number_of_pages = 1
+
+    if ' ' in num_of_jobs:
+        space_index = num_of_jobs.index(' ')
+        total_jobs = (num_of_jobs[0:space_index])
+        total_jobs_int = int(total_jobs.replace(',', ''))
+        number_of_pages = math.ceil(total_jobs_int / constants.jobsPerPage)
+        if (number_of_pages > 40): number_of_pages = 40
+
+    else:
+        number_of_pages = int(num_of_jobs)
+
+    return number_of_pages
+
+
+def url_to_keywords(url: str) -> List[str]:
+    keyword_url = url[url.index("keywords=") + 9:]
+    keyword = keyword_url[0:keyword_url.index("&")]
+    location_url = url[url.index("location=") + 9:]
+    location = location_url[0:location_url.index("&")]
+    return [keyword, location]
+```

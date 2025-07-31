@@ -52,13 +52,16 @@ my_list = ['Joseph', 'Kelly', 'Eric', 'Tom']
 # create a list
 mutable_list = [1, 'Joe', True]
 
-# Remove Index 1 of the list  del
+# Remove Index 1 of the list  del-->  del list_name[]
 
 
 # Change the value of an element.
+# mutable_list[1] = 'Kelly'
 
 
-# Add more elements at the end.
+# Add more elements at the end, use the append() method.
+# these methods and functions can be too
+# .append() .insert() .remove() .pop() .sort() .sorted() .reverse() del[] an indexed element
 
 
 
@@ -78,7 +81,7 @@ mutable_list = [1, 'Joe', True]
 
 # 3.  PROPERTIES OF LISTS: ORDERED
 # Create an empty list.
-empt_list = []
+append_list = []
 
 # use the .append() sting method to Add a few items in a particular order.
 
@@ -122,7 +125,7 @@ het_list_vert = [
      [100, 200, 300], # Other lists
      {'Cars', 'Motorcycles'},
 ]
-
+print(het_list_vert)
 
 
 
@@ -139,7 +142,7 @@ het_list_vert = [
 
 # 5.  CREATING LISTS
 # You can create an empty list by using empty square brackets []
-emp_list = []
+some_empty_list = []
 
 # You can create a pre-populated list by declaring the elements inside the brackets.
 pre_pop_list = [1, 2, 3]
@@ -244,14 +247,20 @@ location = ['Raleigh', 'North Carolina', [85, 90, 78]]
 add_and_remove_elements = []
 
 # You can use "append", which adds a single item to the end of the list.
-my_list.append("Houston")
+add_and_remove_elements.append('Raleigh')
+add_and_remove_elements.append('Miami')
+add_and_remove_elements.append('Las Vegas')
 
 
 # To remove items from the list, you use the "del" statement, with the index.
-
-# You can also remove by value. This will remove the first value it finds.
-
 # Warning: Using "del" directly on the list itself removes the whole list from memory.
+
+# You can also remove by value .remove() .pop()
+add_and_remove_elements.remove('Raleigh')
+
+pop_this_element = add_and_remove_elements.pop(1) # Miami
+
+
 
 # AND YES, YOU CAN PRE-PEND ELEMENTS TO THE LIST USING THE .INSERT() METHOD
 languages = ['Python', 'JavaScript', 'Rust', 'Go', 'C++']
@@ -332,22 +341,22 @@ work_location.append('Raleigh')
 
 # 10. CHECK IF AN ELEMENT EXISTS
 # An easy way to check if an element exists in a list, is to use the “in” or “not in” statements
-work_location = []
-
-print('Raleigh' in work_location) # city
-print('North Carolina') # State
-
-# This one prints FALSE, why?
-print(101 in work_location)
-
-print(101 in my_list[2]) # Prints True
-
-# using it as part of an 'if' statement.
-if 'Raleigh' in work_location:
-    print('Raleigh was found in the list')
-
-if 'Chapel Hill' not in work_location:
-    print('Chapel Hill was found in the list')
+#work_location = []
+#
+#print('Raleigh' in work_location) # city
+#print('North Carolina') # State
+#
+## This one prints FALSE, why?
+#print(101 in work_location)
+#
+#print(101 in my_list[2]) # Prints True
+#
+## using it as part of an 'if' statement.
+#if 'Raleigh' in work_location:
+#    print('Raleigh was found in the list')
+#
+#if 'Chapel Hill' not in work_location:
+#    print('Chapel Hill was found in the list')
 
 
 
@@ -374,13 +383,13 @@ if 'Chapel Hill' not in work_location:
 # .sorted()
 
 # Sorting in place: Use this when the original order is not important. Saves memory.
-my_list = [5, 4, 7, 2, 1]
+sort_list = [5, 4, 7, 2, 1]
 
 # Sorting to a new copy:
 # Use this when the original order is important.
 # this one uses the .sorted() and the syntax is a bit different
 
-my_list = [5, 4, 7, 2, 1]
+sort_list = [5, 4, 7, 2, 1]
 # LIST_NAME = SORTED(LIST_NAME)
 
 
@@ -406,7 +415,7 @@ my_list = [5, 4, 7, 2, 1]
 
 # 12. REVERSE A LIST
 # Reversing in place using the .reverse() method, which reverses the original list.
-my_list = [5, 4, 7, 2, 1]
+reverse_list = [5, 4, 7, 2, 1]
 
 # Reversing to a new copy of the list using the "reversed" function,
 # which leaves the original list unchanged, but needs to be cast to a list.
@@ -449,13 +458,12 @@ my_list = [5, 4, 7, 2, 1]
 
 # Some people like cheese, some people don't. ONLY add cheese to your
 # list of ingredients if you really like cheese.🧀
-my_list = ???
+# my_list = []
 
 # Then, use an if/else statement to print a message that will tell us
 # whether you like cheese, based on its presence in the list.
 
 
-???
 
 
 # Then, to make it look pretty, sort the list in alphabetical order and print it out.
@@ -463,7 +471,6 @@ my_list = ???
 # about the original order of the ingredients.
 
 
-???
 #print(my_list)
 
 
@@ -524,17 +531,17 @@ my_list_2 = ["Tom", "Bernard"]
 # Syntax:
 # sliced_list = original_list[start:end:optional_step]
 # Indexes: 0 1 2 3 4 5 6
-my_list = ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
+slice_list = ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
 
 # Using the slicer without any parameters just returns the original list.
 #print(my_list[:]) # ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
 #print(my_list[::]) # ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
 
 # Get the first two elements.
-my_slice = my_list[0:2] # ['Joseph', 'Kelly']
+my_slice = slice_list[0:2] # ['Joseph', 'Kelly']
 
 # Get the second, third and fourth elements.
-my_slice = my_list[1:4] # ['Kelly', 'Eric', 'Tom']
+my_slice = slice_list[1:4] # ['Kelly', 'Eric', 'Tom']
 
 
 
@@ -543,7 +550,7 @@ my_slice = my_list[1:4] # ['Kelly', 'Eric', 'Tom']
 #------------------------------------------------------------#
 # OPTIONAL STEP PARAMETER to extract every N elemets
 #------------------------------------------------------------#
-my_list = ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
+slice_param = ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]
 
 # Stepped slicing, get every N items.
 # Python will take N steps before grabbing an element.
@@ -574,8 +581,7 @@ weekend_days = ['saturday', 'sunday']
 # Then, you need to concatenate both lists into a third new list that represents the full week.
 full_week = work_days + weekend_days
 
-# Then, can you think of an easy way to create a new list that contains the days of two full
-weeks?
+# Then, can you think of an easy way to create a new list that contains the days of two full weeks?
 fortnight = full_week * 2
 
 # Finally, once you have two full weeks into a list, use the slicer to:
@@ -713,37 +719,87 @@ employees = [ 93, 104, 89, 101, 93]
 
 
 # EXTRA [SELF-STUDY]: TUPLES
-# When declaring a tuple, you have to pre-populated. You can’t add elements later.
-my_tuple = ("Joseph", "Kelly", 1, 2, 3, [100, 200, 300])
-
-# This won't work
-my_tuple.append("Eric")
-my_tuple.remove("Joseph")
-
-# This works just fine
-my_tuple.index("Kelly") # 1
-my_tuple.count("Joseph") # 1
-
-# ANNOYANCE: If you ever need a tuple with a single element,
-# you have to include a trailing comma.
-my_tuple = ("Joseph", )
-
-# OK, That's all for now!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Tuples are like lists but immutable
+# When declaring a tuple, you have to pre-populated. You can’t add elements later.
+#my_tuple = ("Joseph", "Kelly", 1, 2, 3, [100, 200, 300])
+#
+## This won't work
+#my_tuple.append("Eric")
+#my_tuple.remove("Joseph")
+#
+## This works just fine
+#my_tuple.index("Kelly") # 1
+#my_tuple.count("Joseph") # 1
+#
+## ANNOYANCE: If you ever need a tuple with a single element,
+## you have to include a trailing comma.
+#my_tuple = ("Joseph", )
+#
+## Extra Sets:
+## Sets have a variety of methods and functions that allow you to manipulate them. Here’s a few:
+## Create a set.
+#my_set = {"Joseph", "Kelly"}
+#print(my_set) # {'Kelly', 'Joseph'}
+#
+## Adding my name again doesn't make it show twice due to uniqueness.
+#my_set.add("Joseph")
+#print(my_set) # {'Kelly', 'Joseph'}
+#
+## Remove an element using remove(). If you try to remove an element that doesn't exist,
+## you get an error.
+#my_set.remove("Joseph") # Removes the element.
+#my_set.remove("Joseph") # Raises a KeyError, as the element doesn't exist anymore.
+#my_set.discard("Joseph") # Same as remove(), but doesn't raise an error if it doesn't exist.
+#
+## ANNOYANCE: You have to use set() to create an empty set, as {} is used to declare a dictionary.
+#my_empty_set = {} # NOT what you want. This creates a dictionary.
+#my_empty_set = set() # THIS is what you want. This creates an empty set
+
+
+# Extra: Sets
+# Sets have a variety of methods and functions that allow you to manipulate them. Here’s a few:
+# Create a set.
+#my_set = {"Joseph", "Kelly"}
+#print(my_set) # {'Kelly', 'Joseph'}
+#
+## Adding my name again doesn't make it show twice due to uniqueness.
+#my_set.add("Joseph")
+#print(my_set) # {'Kelly', 'Joseph'}
+#
+## Remove an element using remove(). If you try to remove an element that doesn't exist,
+## you get an error.
+#my_set.remove("Joseph") # Removes the element.
+#my_set.remove("Joseph") # Raises a KeyError, as the element doesn't exist anymore.
+#my_set.discard("Joseph") # Same as remove(), but doesn't raise an error if it doesn't exist.
+#
+## ANNOYANCE: You have to use set() to create an empty set, as {} is used to declare a dictionary.
+#my_empty_set = {} # NOT what you want. This creates a dictionary.
+#my_empty_set = set() # THIS is what you want. This creates an empty set
+
+
+
+# List comprehensions are a concise way to create lists.
+# Traditional way
+#squares = []
+#for x in range(10):
+#    squares.append(x**2)
+#print(squares)  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+#
+## Using list comprehension
+#squares = [x**2 for x in range(10)]
+#print(squares)  # [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+#
+## With condition
+#even_squares = [x**2 for x in range(10) if x % 2 == 0]
+#print(even_squares)  # [0, 4, 16, 36, 64]
+
+
+
+
+
+
+
+
+
 
