@@ -1,6 +1,32 @@
 
 # Frequently Asked Questions about Lists in Python
 
+## Table of Contents
+- [1. Modifying the List](#1-modifying-the-list)
+  - [What's the difference between `append()` and `insert()`?](#whats-the-difference-between-append-and-insert)
+  - [What is the difference between the `.sort()` and `.sorted()` method?](#what-is-the-difference-between-the-sort-and-sorted-method)
+  - [What happens if I print the result of `list.append(...)`?](#what-happens-if-i-print-the-result-of-listappend)
+  - [How do I remove elements correctly?](#how-do-i-remove-elements-correctly)
+- [2. Built-in Functions](#2-built-in-functions)
+  - [What's the difference between `count()`, `sum()`, `min()`, and `max()`?](#whats-the-difference-between-count-sum-min-and-max)
+  - [Why must a list contain only numbers to use `sum()`?](#why-must-a-list-contain-only-numbers-to-use-sum)
+- [3. Ordering & Reverse](#3-ordering--reverse)
+  - [How does `.reverse()` work differently from slicing with `[::-1]`?](#how-does-reverse-work-differently-from-slicing-with--1)
+  - [What does `shuffle()` do, and does it change the original list?](#what-does-shuffle-do-and-does-it-change-the-original-list)
+- [4. References, Copies, & Shared Memory](#4-references-copies--shared-memory)
+  - [What happens if I assign `list2 = list1` and change one?](#what-happens-if-i-assign-list2--list1-and-change-one)
+  - [How do I make a real copy?](#how-do-i-make-a-real-copy)
+- [5. Syntax & Common Errors](#5-syntax--common-errors)
+  - [Do I need commas between every list element?](#do-i-need-commas-between-every-list-element)
+  - [What's wrong with `['1', 1]` versus `[1, '1']`?](#whats-wrong-with-1-1-versus-1-1)
+- [6. Real-world Confusion Scenarios](#6-real-world-confusion-scenarios)
+  - [Why does `list1 = list2` not duplicate the list?](#why-does-list1--list2-not-duplicate-the-list)
+  - [Why do slicing operations not raise errors when indices go out of range?](#why-do-slicing-operations-not-raise-errors-when-indices-go-out-of-range)
+  - [What does `list * 3` do?](#what-does-list--3-do)
+- [Other](#other)
+  - [Do lists have to use square brackets [] to contain the elements?](#do-lists-have-to-use-square-brackets--to-contain-the-elements-my_list-----or-can-you-use--or-even-)
+  - [How do the `in` and `not in` operators work?](#in-python-the-in-and-not-in-operators-are-used-to-check-for-membership-in-an-iterable-such-as-a-list-string-tuple-or-set-they-return-a-boolean-value-true-or-false-based-on-whether-a-specified-value-is-present-or-absent-in-the-iterable-heres-a-detailed-explanation-of-how-they-work-particularly-in-the-context-of-your-code)
+
 ## 1. Modifying the List
 
 ### What's the difference between `append()` and `insert()`?

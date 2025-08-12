@@ -15,10 +15,10 @@ my_city = {
 }
 
 # What is the name of the city?
-print(???)
+#print(???)
 
 # How would you print the percentage of the Hispanic population?
-print(???)
-
-# What is the last airport of the list of airports?
-print(???)
+#print(???)
+#
+## What is the last airport of the list of airports?
+#print(???)
