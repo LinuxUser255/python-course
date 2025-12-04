@@ -4,20 +4,17 @@
 # style without manual editing.
 
 # Given the user's input:
-text = input("Enter the text to be formatted: ")
+#text = input("Enter the text to be formatted: ")
+#
+#print(str.upper(text))
+#print(str.lower(text))
+#print(str.title(text))
+#print(len(text))
 
-# Format this "text" variable so you can show the variable in:
-# - uppercase
-# - lowercase
-# - with the first letter of each word capitalized and the rest
-#   of the letters in lowercase
-# - total length of the string.
+text = input('Enter the text to be formatted: ')
 
-# Example:
-# Enter text to be formatted: hello wORLD
+print("Uppercase: " + text.upper())
+print("Lowercase: " + text.lower())
+print("Title: " + text.title())
+print("Length: " + str(len(text)))
 
-# Expected output:
-# Uppercase: HELLO WORLD
-# Lowercase: hello world
-# Title: Hello World
-# Lenght: 11

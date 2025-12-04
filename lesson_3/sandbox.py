@@ -1,43 +1,20 @@
 #!/usr/bin/env python3
-"""
-PRACTICE 6 PAGE 24
-Bug in the code
-    Write a program that takes three user's inputs:
-    You need to provide two outputs:
-
-    sentence = input("enter a sentence: ")
-    new_word = input("enter the word to replace: ")
-    letter = input("enter the letter to count: ")
-
-Example:
-    Enter a sentence: I love cats and dogs, but cats are my favorite.
-    Enter the word to replace: cats
-    Enter the letter to count: o
-    Expected output:
-    I love REPLACED and dogs, but REPLACED are my favorite.
-
-    ● The sentence replacing all "word to
-      replace" with REPLACED
-    ● The number of occurrences of the
-      given letter to count in the sentence
-    ● A sentence
-    ● A word to replace
-    ● Letter to count
-
-"""
 
 
+# Year: 2010 2011 2012 2013 2014
+employees = [ 93, 104, 89, 101, 93]
 
-sentence = input("enter a sentence: ")
-new_word = input("enter the word to replace: ")
-letter = input("enter the letter to count: ")
+min(employees)
+print(min(employees))
 
-#NO
-# print(sentence.replace(new_word, sentence))
-print(sentence.replace(new_word, "REPLACED"))
-print(sentence.count(letter))
+max(employees)
+print(max(employees))
 
+sum(employees)
+print(sum(employees))
 
-#print(sentence.replace(new_word, sentence))
-#print(sentence.count(letter))
+employees.count(93)
+print(employees.count(93))
 
+len(employees)
+print(len(employees))

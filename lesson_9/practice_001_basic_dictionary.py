@@ -21,3 +21,5 @@ person = {
 }
 
 print(person['location']['city'])
+print()
+print(person['married'])

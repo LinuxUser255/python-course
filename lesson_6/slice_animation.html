@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Python Slice Animation: [0:4:2]</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #1e1e1e;
+      color: #ddd;
+      text-align: center;
+      padding: 2rem;
+    }
+    .list {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .item {
+      width: 90px;
+      padding: 12px 8px;
+      background: #333;
+      border: 2px solid #555;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .item.index {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 4px;
+    }
+    .highlight {
+      background: #007acc !important;
+      color: white !important;
+      border-color: #00ccff !important;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px #00ccff;
+    }
+    .step {
+      background: #2d2d2d;
+      padding: 1rem;
+      margin: 1.5rem auto;
+      max-width: 700px;
+      border-radius: 10px;
+      border-left: 5px solid #00ccff;
+      text-align: left;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .controls {
+      margin: 2rem 0;
+    }
+    button {
+      background: #007acc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+    .code {
+      background: #0d0d0d;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      color: #a6e22{
+      margin: 1.5rem auto;
+      max-width: 600px;
+      text-align: left;
+    }
+    .title {
+      color: #00ccff;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="title">Python List Slice Animation</h1>
+  <p><code>my_list[0:4:2] → ['Joseph', 'Eric']</code></p>
+
+  <div class="code">
+    <pre>my_list = ["Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"]</pre>
+  </div>
+
+  <div class="list" id="list">
+    <!-- Items will be injected by JS -->
+  </div>
+
+  <div id="steps"></div>
+
+  <div class="controls">
+    <button id="prev">Previous</button>
+    <button id="play">Play</button>
+    <button id="next">Next</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <script>
+    const data = [
+      "Joseph", "Kelly", "Eric", "Tom", "Bernard", "Jack", "Josh"
+    ];
+
+    const steps = [
+      {
+        desc: "Start at index 0",
+        highlight: [0],
+        pointer: 0
+      },
+      {
+        desc: "Take element at index 0 → 'Joseph'",
+        highlight: [0],
+        selected: [0]
+      },
+      {
+        desc: "Step +2 → go to index 2",
+        highlight: [2],
+        pointer: 2
+      },
+      {
+        desc: "Take element at index 2 → 'Eric'",
+        highlight: [2],
+        selected: [0, 2]
+      },
+      {
+        desc: "Next would be index 4 → but end=4, so STOP",
+        highlight: [4],
+        pointer: 4,
+        stop: true
+      },
+      {
+        desc: "Result: ['Joseph', 'Eric']",
+        highlight: [0, 2],
+        selected: [0, 2],
+        final: true
+      }
+    ];
+
+    let currentStep = 0;
+    let animationInterval = null;
+
+    const listEl = document.getElementById('list');
+    const stepsEl = document.getElementById('steps');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    const playBtn = document.getElementById('play');
+    const resetBtn = document.getElementById('reset');
+
+    // Build list items
+    function buildList() {
+      listEl.innerHTML = '';
+      data.forEach((name, i) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <div>${name}</div>
+          <div class="index">${i}</div>
+        `;
+        div.dataset.index = i;
+        listEl.appendChild(div);
+      });
+    }
+
+    // Update visual state
+    function updateStep() {
+      const step = steps[currentStep];
+      const items = document.querySelectorAll('.item');
+
+      // Reset all
+      items.forEach(item => {
+        item.classList.remove('highlight');
+      });
+
+      // Highlight current pointer
+      if (step.highlight) {
+        step.highlight.forEach(idx => {
+          if (items[idx]) items[idx].classList.add('highlight');
+        });
+      }
+
+      // Show selected
+      document.querySelectorAll('.item').forEach((el, i) => {
+        if (step.selected && step.selected.includes(i)) {
+          el.style.background = '#1e5a1e';
+          el.style.borderColor = '#00ff00';
+        } else if (!step.highlight || !step.highlight.includes(i)) {
+          el.style.background = '';
+          el.style.borderColor = '';
+        }
+      });
+
+      // Update step description
+      stepsEl.innerHTML = '';
+      steps.forEach((s, i) => {
+        const div = document.createElement('div');
+        div.className = 'step';
+        if (i === currentStep) div.classList.add('visible');
+        div.innerHTML = `
+          <strong>Step ${i + 1}:</strong> ${s.desc}
+          ${s.final ? '<br><br><strong style="color:#00ff00">Final Result: [\'Joseph\', \'Eric\']</strong>' : ''}
+        `;
+        stepsEl.appendChild(div);
+      });
+
+      // Update buttons
+      prevBtn.disabled = currentStep === 0;
+      nextBtn.disabled = currentStep === steps.length - 1;
+      playBtn.textContent = animationInterval ? 'Pause' : 'Play';
+    }
+
+    // Navigation
+    prevBtn.onclick = () => {
+      if (currentStep > 0) {
+        currentStep--;
+        updateStep();
+      }
+    };
+
+    nextBtn.onclick = () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        updateStep();
+      }
+    };
+
+    playBtn.onclick = () => {
+      if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+        playBtn.textContent = 'Play';
+      } else {
+        animationInterval = setInterval(() => {
+          if (currentStep < steps.length - 1) {
+            currentStep++;
+            updateStep();
+          } else {
+            clearInterval(animationInterval);
+            animationInterval = null;
+            playBtn.textContent = 'Play';
+          }
+        }, 1800);
+        playBtn.textContent = 'Pause';
+      }
+    };
+
+    resetBtn.onclick = () => {
+      currentStep = 0;
+      if (animationInterval) {
+        clearInterval(animationInterval);
+        animationInterval = null;
+      }
+      updateStep();
+    };
+
+    // Init
+    buildList();
+    updateStep();
+  </script>
+</body>
+</html>

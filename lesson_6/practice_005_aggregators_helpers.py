@@ -7,18 +7,18 @@ employees = [  93,   104,     89,    101,     93]
 
 # We would like to know the following
 # 1. What's the lowest number of employees the company ever had?
-print(???)
+#print(???)
 
 # 2. What's the highest number of employees the company ever had?
-print(???)
+#print(???)
 
 # 3. What's the total head count if all employees were different every year?
-print(???)
+#print(???)
 
 # 4. How many years had 93 employees?
-print(???)
+#print(???)
 
 # 5. Can you think of a way to determine how many years the company was in business?
 #    Hint: If it's one list element per year, maybe you can count the number of elements.
-print(???)
+#print(???)
 
