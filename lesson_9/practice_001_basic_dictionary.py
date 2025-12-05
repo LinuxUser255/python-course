@@ -20,6 +20,6 @@ person = {
     'married': False
 }
 
-print(person['location']['city'])
+print(person['location']['state'])
 print()
 print(person['married'])
