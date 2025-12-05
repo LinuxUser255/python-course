@@ -1,6 +1,7 @@
 
-# WHICH FOR LOOP IS MOST SUITABLE FOR THIS PROBLEM?
+# PRACTICE: WHO HAS THE $100?
 
+# WHICH FOR LOOP IS MOST SUITABLE FOR THIS PROBLEM?
 # Write a Python script that prints out the name of the person who has the 100 dollar bill in their wallet.
 # This dictionary shows the bills each person has in their wallet and how many.
 # Iterate over the wallets and check if each wallet has the 100 dollar bill.

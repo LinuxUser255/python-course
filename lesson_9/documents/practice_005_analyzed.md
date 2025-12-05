@@ -75,7 +75,7 @@ if __name__ == "__main__":
 ```
 ## **Detailed Analysis:**
 
-### **✅ Strengths of Your Editor Solution:**
+### **✅ Strengths of refactored Editor Solution:**
 
 **1. Better Separation of Concerns:**
 ```python
@@ -167,12 +167,12 @@ def process_word(word):
 
 <br>
 
-The given solution works but represents **beginner-level code**, while your solution 
+The given solution works but represents **beginner-level code**, while the refactored solution 
 demonstrates **intermediate-to-advanced Python practices** that you'd see in professional development.
 
 <br>
 
-**For learning purposes**, your solution teaches better programming habits and design patterns!
+**For learning purposes**, this solution teaches better programming habits and design patterns!
 
 # Explanation of the line 
 `letter_count[character] = letter_count.get(character, 0) + 1`
