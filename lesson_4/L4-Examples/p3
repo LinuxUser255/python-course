@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+
+
+def main():
+    age = int(input("Enter your age: "))
+    income = int(input("Enter your monthly income: "))
+
+    if age >= 18 and income <= 1000:
+        print("Discount Qualify")
+    elif age < 18 or income == 0:
+        print("Special Discount")
+    else:
+        print("No Discount")
+
+
+if __name__ == "__main__":
+    main()
+

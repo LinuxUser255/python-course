@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+
+
+def main():
+    grade = int(input("Enter your grade: "))
+
+    match grade:
+        case g if g >= 90:
+            print("Your grade is A")
+        case g if g >= 80:
+            print("Your grade is B")
+        case g if g >= 70:
+            print("Your grade is C")
+        case g if g >= 60:
+            print("Your grade is D")
+        case _:
+            print("Your grade is F")
+
+
+
+if __name__ == "__main__":
+    main()
+
