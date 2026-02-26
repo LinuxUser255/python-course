@@ -5,16 +5,16 @@
 
 # Given the user's input:
 #text = input("Enter the text to be formatted: ")
-#
-#print(str.upper(text))
-#print(str.lower(text))
-#print(str.title(text))
-#print(len(text))
+
 
 text = input('Enter the text to be formatted: ')
 
-print("Uppercase: " + text.upper())
+print(text.upper())
+
 print("Lowercase: " + text.lower())
+
 print("Title: " + text.title())
-print("Length: " + str(len(text)))
+
+print("Length: " + str(len(text))) # Convert the integer to
+
 

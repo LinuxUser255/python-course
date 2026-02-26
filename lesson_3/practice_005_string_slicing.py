@@ -20,13 +20,8 @@
 
 # the p in programmin is the 7th item
 # extract the word 'programming' [7:18]
-# The slice [7:18] extracts exactly 11 characters that spell "programming".
- # programming
-#print(string[7:])    # 'programming is fun!'
-#print(string[::3])
 
 string = "Python"
-print(string[5:3:-1])
 
 text = "Python is amazing!"
 

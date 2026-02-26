@@ -2,13 +2,15 @@
 
 
 def main():
+    holiday = False
+
     if holiday:
-        if weather == 'sunny':
-            print("Enjoy your holiday!")
+        if weather == "sunny":
+            print('Go to the beach!')
         else:
-            print("Black ICE is dangerous.")
+            print('Stay home and enjoy your holiday!')
     else:
-        print("you got stuff to do.")
+        print('Work is waiting on you!')
 
 
 if __name__ == "__main__":
