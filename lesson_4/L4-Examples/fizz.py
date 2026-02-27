@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 def main():
     """
     Create a variable called number. Set it to any integer.

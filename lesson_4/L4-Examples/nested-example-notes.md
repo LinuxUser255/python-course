@@ -25,6 +25,26 @@ else:                                       # Outer else (covers ≤ 0)
     print("No test score available")
 ```
 
+
+The code has two layers of logic — an **outer** check and an **inner** check.
+
+**Outer layer** — first asks: *"Is there even a valid score?"*
+- If `test_score > 0`, it enters the inner block to evaluate the grade.
+- If not (zero or negative), it skips everything inside and prints `"No test score available"`.
+
+**Inner layer** — only runs if the outer condition passed, then breaks the score into three ranges:
+- `> 90` → `"Excellent!"`
+- `70–90` → `"Good job!"`
+- `1–69` → `"Keep working hard!"` (the `else` catches anything that didn't match above)
+
+**The key idea of nesting** is that the inner `if/elif/else` is *gated* by the outer `if`. If the outer condition is `False`, Python skips the entire indented block — the inner conditions never even get evaluated. Think of it as two doors: you can only reach the second door if you've already opened the first.
+
+A quick flow example:
+- Input `95` → passes outer (`95 > 0`), passes first inner (`95 > 90`) → **"Excellent!"**
+- Input `75` → passes outer, fails first inner, passes `elif` → **"Good job!"**
+- Input `50` → passes outer, falls through to inner `else` → **"Keep working hard!"**
+- Input `-5` → fails outer → **"No test score available"**
+
 #### Control Flow of the Nested If
 
 1. **Outer condition** (`test_score > 0`):
@@ -84,7 +104,7 @@ else:                                       # Outer else (covers ≤ 0)
 6. **Misplaced/inaccurate comments**
    - The comments don't fully match the code behavior and could confuse readers.
 
-#### Recommended Refactored Version
+#### Refactored Version
 
 ```python
 try:
