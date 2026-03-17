@@ -170,11 +170,18 @@ def iterate_and_check():
 
     crypto_value = 0.0
 
+    # `balances.items()` - Returns a view object containing key-value pairs as tuples:
+    # `for asset, amount in ...` - Unpacks each tuple into two variables:
+    # asset = the dictionary key (e.g., "ZUSD", "XXBT")
+    # amount = the dictionary value (e.g., 1500.00, 0.012)
+    # `.items()`: You get both keys AND values simultaneously,
     for asset, amount in balances.items():
         if asset == "ZUSD" or amount <= 0:
             continue
 
         pair = asset_to_pair.get(asset)
+        # defensive programming technique
+        # using guard clause pattern, validate data before proceeding
         if not pair:
             print(f"⚠️  Unknown asset: {asset} — skipping")
             continue
@@ -186,6 +193,7 @@ def iterate_and_check():
 
     zusd = balances.get("ZUSD", 0.0)
     total = zusd + crypto_value
+    #         💰 Cash:          $1,500.00
     print(f"\n💰 Cash:          ${zusd:,.2f}")
     print(f"📈 Crypto value:  ${crypto_value:,.2f}")
     print(f"🏦 Total portfolio: ${total:,.2f}")
@@ -200,7 +208,7 @@ def iterate_and_check():
 
 def update_and_delete():
     balances = {
-        "ZUSD": 1_500.00,
+        "ZUSD": 1500.00,
         "XXBT": 0.012,
         "XETH": 1.5,
     }

@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
 def dicts_declaration():
+    # pre-defined dictionary
     asset_to_pair = {
         "XXBT": "BTC/USD",
         "XETH": "ETH/USD",
-        "SOL":  "SOL/USD",
-        "XMR":  "XMR/USD",
+        "SOL": "SOL/USD",
+        "XMR": "XMR/USD",
     }
-    print(asset_to_pair) # prints the dictionary
+    print(asset_to_pair)  # prints the dictionary
+
+    # create an empty dictionary, and add elements
+    balances = {}
+    balances["XXBT"] = 0.012  # add key-value pair
+    balances["XMR"] = 0.025  # add key-value pair
+    print(balances)  # prints the updated dictionary
 
 # accessing dictionary values, two ways
 # square brackets [] and .get() methods
@@ -15,27 +22,33 @@ def accessing_values():
     asset_to_pair = {
         "XXBT": "BTC/USD",
         "XETH": "ETH/USD",
-        "SOL":  "SOL/USD",
-        "XMR":  "XMR/USD",
+        "SOL": "SOL/USD",
+        "XMR": "XMR/USD",
     }
-    print(asset_to_pair["XMR"]) # Brackt access
-    print(asset_to_pair.get("XMR")) # .get() access
-    print(asset_to_pair.get("DOGE")) # response is None if the key doesn't exist
+    # dictname[key]
+    # #dictname.get(key)
+    print(asset_to_pair["XMR"])  # Brackt access
+    print(asset_to_pair.get("XMR"))  # .get() access
+    print(asset_to_pair.get("DOGE"))  # response is None if the key doesn't exist
+    print(asset_to_pair.get("SOL"))
 
 
 def nested_dict():
+    # name the dictionary
     portfolio = {
-        "XXBT": {           # BTC — Bitcoin
+        # outer keys are the crypto names
+        # inner keys are the asset pairs
+        "XXBT": {  # BTC — Bitcoin
             "pair": "BTC/USD",
             "amount": 0.012,
-            "price": 75_000.00, # Python's numeric literal separator & easier to read
+            "price": 75_000.00,  # Python's numeric literal separator & easier to read
         },
-        "XETH": {           # ETH — Ethereum
+        "XETH": {  # ETH — Ethereum
             "pair": "ETH/USD",
             "amount": 1.5,
             "price": 3_100.00,
         },
-        "XXMR": {           # XMR — Monero
+        "XXMR": {  # XMR — Monero
             "pair": "XMR/USD",
             "amount": 2.9,
             "price": 3_710.00,
@@ -43,7 +56,8 @@ def nested_dict():
     }
 
     # Access the XMR price - chain the keys
-    print(portfolio["XXMR"]["price"]) # 3710.10
+    # dictname[outer_key][inner_key]
+    print(portfolio["XXMR"]["price"])  # 3710.10
 
     # Access the XMR amount, (quantity of XMR in our portfolio)
     # name the dictionary, to extract the value
@@ -58,6 +72,7 @@ def nested_dict():
     # *see notes at the end of the code for more explanation.*
     print(f"Ethereum is: ${eth_value:,.2f}")
 
+
 # viewing objects in the dictionary
 # .keys() method returns a list of keys in the dictionary
 # .values() method returns a list of values in the dictionary
@@ -67,12 +82,55 @@ def view_objects():
         "ZUSD": 1_500.00,
         "XXBT": 0.012,
         "XETH": 1.5,
-        "XXMR":  10.0,
+        "XXMR": 10.0,
     }
     # dictionary name .keys()
     print(balances.keys())
     print(balances.values())
     print(balances.items())
+
+# Iterating over a dictionary
+def iterate_and_check():
+    asset_to_pair = {
+        "XXBT": "BTC/USD",
+        "XETH": "ETH/USD",
+        "SOL": "SOL/USD",
+        "XMR": "XMR/USD",
+    }
+
+    balances = {
+        "ZUSD": 1_500.00,
+        "XXBT": 0.012,
+        "XETH": 1.5,
+    }
+
+    fake_prices = {
+        "BTC/USD": 62_000.00,
+        "ETH/USD": 3_100.00,
+        "SOL/USD": 150.00,
+    }
+
+    crypto_values = 0.0
+    # iterate over the balances dictionary
+    # `balances.items()` - Returns a view object containing key-value pairs as tuples:
+    # `for asset, amount in ...` - Unpacks each tuple into two variables:
+    # asset = the dictionary key (e.g., "ZUSD", "XXBT")
+    # amount = the dictionary value (e.g., 1500.00, 0.012)
+    # `.items()`: You get both keys AND values simultaneously,
+    for asset, amount in balances.items():
+        # skip this iteration if the asset is ZUSD or the amount is 0 or less
+        if asset == "ZUSD" or amount <= 0:
+            continue
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,8 +159,8 @@ def main():
 if __name__ == "__main__":
     main()
 
-
     # What ,.2f Does:
+    # proper formatting using the comma in thousands
     # 1.`,` (comma) - Adds thousand separators
     # 1000 becomes 1,000
     # 1000000 becomes 1,000,000
