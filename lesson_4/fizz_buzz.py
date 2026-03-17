@@ -6,6 +6,7 @@ Most Pythonic FizzBuzz
   Uses or for elegant default
 """
 
+
 def fizz_buzz(number):
     result = ""
 
@@ -18,7 +19,7 @@ def fizz_buzz(number):
 
 
 # Test it
-fizz_buzz(9)   # Fizz
+fizz_buzz(9)  # Fizz
 fizz_buzz(10)  # Buzz
 fizz_buzz(15)  # FizzBuzz divisible by both 3 and 5
-fizz_buzz(7)   # 7
+fizz_buzz(7)  # 7
