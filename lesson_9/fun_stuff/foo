@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+
+def dicts_declaration():
+    asset_to_pair = {
+        "XXBT": "BTC/USD",
+        "XETH": "ETH/USD",
+        "SOL":  "SOL/USD",
+        "XMR":  "XMR/USD",
+    }
+    print(asset_to_pair) # prints the dictionary
+
+# accessing dictionary values, two ways
+# square brackets [] and .get() methods
+def accessing_values():
+    asset_to_pair = {
+        "XXBT": "BTC/USD",
+        "XETH": "ETH/USD",
+        "SOL":  "SOL/USD",
+        "XMR":  "XMR/USD",
+    }
+    print(asset_to_pair["XMR"]) # Brackt access
+    print(asset_to_pair.get("XMR")) # .get() access
+    print(asset_to_pair.get("DOGE")) # response is None if the key doesn't exist
+
+
+def nested_dict():
+    portfolio = {
+        "XXBT": {           # BTC — Bitcoin
+            "pair": "BTC/USD",
+            "amount": 0.012,
+            "price": 75_000.00, # Python's numeric literal separator & easier to read
+        },
+        "XETH": {           # ETH — Ethereum
+            "pair": "ETH/USD",
+            "amount": 1.5,
+            "price": 3_100.00,
+        },
+        "XXMR": {           # XMR — Monero
+            "pair": "XMR/USD",
+            "amount": 2.9,
+            "price": 3_710.00,
+        },
+    }
+
+    # Access the XMR price - chain the keys
+    print(portfolio["XXMR"]["price"]) # 3710.10
+
+    # Access the XMR amount, (quantity of XMR in our portfolio)
+    # name the dictionary, to extract the value
+    print(portfolio["XXMR"]["amount"])
+
+    # Calculate the USD of one asset Ethereum
+    # create the asset variable
+    eth = portfolio["XETH"]
+    # create an eth value variable that extracts the amount and price, and multiplies them
+    eth_value = eth["amount"] * eth["price"]
+
+    # *see notes at the end of the code for more explanation.*
+    print(f"Ethereum is: ${eth_value:,.2f}")
+
+# viewing objects in the dictionary
+# .keys() method returns a list of keys in the dictionary
+# .values() method returns a list of values in the dictionary
+# .items() method returns a list of tuples, where each tuple contains a key-value pair
+def view_objects():
+    balances = {
+        "ZUSD": 1_500.00,
+        "XXBT": 0.012,
+        "XETH": 1.5,
+        "XXMR":  10.0,
+    }
+    # dictionary name .keys()
+    print(balances.keys())
+    print(balances.values())
+    print(balances.items())
+
+
+
+
+
+def main():
+    print("Declaring a dictionary:")
+    dicts_declaration()
+
+    print("\nAccessing dictionary values:")
+    accessing_values()
+
+    print("\nNested dictionary:")
+    nested_dict()
+
+    print("\nPART 4 — View Objects")
+    view_objects()
+
+    #print("\nPART 5 — Iterating + in / not in")
+    #iterate_and_check()
+
+    #print("\nPART 6 — Update and Delete")
+    #update_and_delete()
+
+
+if __name__ == "__main__":
+    main()
+
+
+    # What ,.2f Does:
+    # 1.`,` (comma) - Adds thousand separators
+    # 1000 becomes 1,000
+    # 1000000 becomes 1,000,000
+    # 2`.2` (dot two) - Limits to 2 decimal places
+    # 4650.123456 becomes 4650.12
+    # 4650.1 becomes 4650.10
+    # 3.`f` (float) - Fixed-point format
+    # Forces decimal notation (not scientific notation)

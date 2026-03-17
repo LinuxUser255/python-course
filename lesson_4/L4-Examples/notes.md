@@ -1,8 +1,8 @@
-# Conditionals questions and thoughts
+# Conditionals - Extra
 
-Great questions! Let me break this down for you.
+ break this down 
 
-**Yes to both!** The line `eligible = 'can vote' if age >= 18 else 'cannot vote'` is Python's **conditional expression** (also called a ternary operator), and it works similarly to both examples you mentioned.
+The line `eligible = 'can vote' if age >= 18 else 'cannot vote'` is Python's **conditional expression** (also called a ternary operator), and it works similarly to both examples you mentioned.
 
 ## Comparison to C's Ternary Operator
 

@@ -2,7 +2,7 @@
 
 
 def main():
-    holiday = False
+    holiday = True
 
     if holiday:
         if weather == "sunny":

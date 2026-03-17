@@ -11,9 +11,11 @@
 #else:
 #    print('Work is waiting on you!')
 
+####################################
 # CORRECTED CODE
-#  holiday must be defined first
+#  HOLIDAY MUST BE DEFINED FIRST
 #  here holiday is defined as False
+###################################
 
 holiday = False
 
