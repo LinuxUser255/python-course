@@ -1,23 +1,71 @@
 #!/usr/bin/env python3
 
+"""
+Using Dictionaries with Crypto Currencies
+
+This module demonstrates dictionary operations using cryptocurrency trading pairs
+as practical examples. It covers dictionary declaration, value access, nested
+structures, iteration, and updates in the context of a crypto portfolio.
+
+Example Usage:
+    KRAKEN_ASSET_TO_PAIR = {
+        "XXBT":  "BTC/USD",   # Bitcoin to US Dollar (USD) trading pair
+        "XETH":  "ETH/USD",   # Ethereum to US Dollar (USD) trading pair
+        "XXMR":  "XMR/USD",   # Monero to US Dollar (USD) trading pair
+        "SOL":   "SOL/USD",   # Solana to US Dollar (USD) trading pair
+        "ADA":   "ADA/USD",   # Cardano to US Dollar (USD) trading pair
+        "DOT":   "DOT/USD",   # Polkadot to US Dollar (USD) trading pair
+        "LINK":  "LINK/USD",  # Chainlink to US Dollar (USD) trading pair
+        "AVAX":  "AVAX/USD",  # Avalanche to US Dollar (USD) trading pair
+    }
+
+Note:
+    Kraken uses internal asset codes (e.g., "XXBT" for Bitcoin) that differ
+    from standard ticker symbols. This mapping dictionary translates between
+    Kraken's codes and human-readable trading pairs.
+"""
+
+
+# ============================================================
+#  PART 1 — Declaring Dictionaries
+#
+#  In the real executor, this dict maps Kraken's internal
+#  asset codes to human-readable trading pairs:
+#
+#  _KRAKEN_ASSET_TO_PAIR = {
+#      "XXBT":  "BTC/USD",
+#      "XETH":  "ETH/USD",
+#      ...
+#  }
+#
+#  Key   → Kraken's internal code  (what the API sends back)
+#  Value → The pair we recognise   (what humans use)
+# ============================================================
+
 def dicts_declaration():
-    # pre-defined dictionary
-    asset_to_pair = {
+    asset_to_pair = {     # pre-defined dictionary
         "XXBT": "BTC/USD",
         "XETH": "ETH/USD",
-        "SOL": "SOL/USD",
-        "XMR": "XMR/USD",
     }
     print(asset_to_pair)  # prints the dictionary
 
-    # create an empty dictionary, and add elements
-    balances = {}
+    balances = {}    # Can also, create an empty dictionary, and add elements
     balances["XXBT"] = 0.012  # add key-value pair
     balances["XMR"] = 0.025  # add key-value pair
     print(balances)  # prints the updated dictionary
 
-# accessing dictionary values, two ways
-# square brackets [] and .get() methods
+
+# ============================================================
+#  PART 2 — Accessing Values
+#
+#  The executor looks up a pair like this:
+#      pair = _KRAKEN_ASSET_TO_PAIR.get(asset)
+#
+#  Two ways to access a value — knowing the difference matters.
+#  accessing dictionary values, two ways
+#  square brackets [] and .get() methods
+# ============================================================
+
 def accessing_values():
     asset_to_pair = {
         "XXBT": "BTC/USD",
@@ -26,12 +74,20 @@ def accessing_values():
         "XMR": "XMR/USD",
     }
     # dictname[key]
-    # #dictname.get(key)
+    # dictname.get(key)
     print(asset_to_pair["XMR"])  # Brackt access
     print(asset_to_pair.get("XMR"))  # .get() access
     print(asset_to_pair.get("DOGE"))  # response is None if the key doesn't exist
     print(asset_to_pair.get("SOL"))
 
+
+# ============================================================
+#  PART 3 — Nested Dictionaries
+#
+#  The executor's balances dict is flat, but the portfolio
+#  valuation builds a richer nested structure internally.
+#  Here's a simplified version showing nested dicts.
+# ============================================================
 
 def nested_dict():
     # name the dictionary
@@ -72,11 +128,20 @@ def nested_dict():
     # *see notes at the end of the code for more explanation.*
     print(f"Ethereum is: ${eth_value:,.2f}")
 
-
+# ============================================================
+#  PART 4 — .keys(), .values(), .items()
+#
+#  The executor iterates over balances like this:
+#      for asset, amount in balances.items():
+#
+#  This is the most common pattern in the entire file.
+#
 # viewing objects in the dictionary
 # .keys() method returns a list of keys in the dictionary
 # .values() method returns a list of values in the dictionary
 # .items() method returns a list of tuples, where each tuple contains a key-value pair
+# ============================================================
+
 def view_objects():
     balances = {
         "ZUSD": 1_500.00,
@@ -89,7 +154,21 @@ def view_objects():
     print(balances.values())
     print(balances.items())
 
-# Iterating over a dictionary
+
+# ============================================================
+#  PART 5 — Iterating + in / not in
+#
+#  The real executor loops over balances and skips ZUSD,
+#  skips zero amounts, and skips unknown assets:
+#
+#      for asset, amount in balances.items():
+#          if asset == "ZUSD" or amount <= 0:
+#              continue
+#          pair = _KRAKEN_ASSET_TO_PAIR.get(asset)
+#          if not pair:
+#              continue
+# ============================================================
+
 def iterate_and_check():
     asset_to_pair = {
         "XXBT": "BTC/USD",
@@ -110,32 +189,70 @@ def iterate_and_check():
         "SOL/USD": 150.00,
     }
 
-    crypto_values = 0.0
-    # iterate over the balances dictionary
+    crypto_value = 0.0
+
+    # Iterating over the balances dictionary - Explained
     # `balances.items()` - Returns a view object containing key-value pairs as tuples:
     # `for asset, amount in ...` - Unpacks each tuple into two variables:
     # asset = the dictionary key (e.g., "ZUSD", "XXBT")
     # amount = the dictionary value (e.g., 1500.00, 0.012)
     # `.items()`: You get both keys AND values simultaneously,
+    # skip this iteration if the asset is ZUSD or the amount is 0 or less
     for asset, amount in balances.items():
-        # skip this iteration if the asset is ZUSD or the amount is 0 or less
         if asset == "ZUSD" or amount <= 0:
             continue
 
+        pair = asset_to_pair.get(asset)
+        # defensive programming technique:
+        # using th guard clause pattern, this validates data before processing it
+        if not pair:
+            print(f"No pair found for asset {asset} - skipping.")
+            continue
+
+        price = fake_prices.get(pair, 0.0)
+        value = amount * price
+        crypto_value += value
+        print(f"  {asset} -> {pair}: {amount} units x ${price:,.2f} =  ${value:,.2f}")
+
+        zusd = balances.get("ZUSD", 0.0)
+        total = zusd + crypto_value
+        #         💰 Cash:          $1,500.00
+        print(f"\n💰 Cash:          ${zusd:,.2f}")
+        print(f"📈 Crypto value:  ${crypto_value:,.2f}")
+        print(f"🏦 Total portfolio: ${total:,.2f}")
+
+# ============================================================
+#  PART 6 — Updating and Deleting
+#
+#  The executor updates balances after trades execute.
+#  .update() merges a whole dict in one shot.
+# ============================================================
+
+def update_and_delete():
+    balances = {
+        "ZUSD": 1_500.00,
+        "XXBT": 0.012,
+        "XETH": 1.5,
+        "XXMR": 10.0,
+    }
+
+    # do a single update - price of XMR chnanged the USD balance
+    balances["ZUSD"] = 1_000.00  # update the value
+    print(balances)
+
+    # After a trade is executed, multiple balances are changed.
+    post_trade = {
+        "ZUSD": 500.00,
+        "XXBT": 0.010,
+    }
+    balances.update(post_trade)  # merges the two dictionaries
+
+    # When an asset is sold, deltete the asset from the dictionary
+    del balances["XETH"]  # delete the XETH asset
+    print(balances)  # prints the updated dictionary
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+# Call all functions in the main function
 def main():
     print("Declaring a dictionary:")
     dicts_declaration()
@@ -149,16 +266,17 @@ def main():
     print("\nPART 4 — View Objects")
     view_objects()
 
-    #print("\nPART 5 — Iterating + in / not in")
-    #iterate_and_check()
+    print("\nPART 5 — Iterating + in / not in")
+    iterate_and_check()
 
-    #print("\nPART 6 — Update and Delete")
-    #update_and_delete()
+    print("\nPART 6 — Update and Delete")
+    update_and_delete()
 
 
 if __name__ == "__main__":
     main()
 
+# Note:
     # What ,.2f Does:
     # proper formatting using the comma in thousands
     # 1.`,` (comma) - Adds thousand separators
