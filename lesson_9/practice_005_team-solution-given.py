@@ -17,4 +17,3 @@ def word_processor():
             break
         process_word(word)
 
-word_processor()

@@ -232,7 +232,7 @@ def update_and_delete():
 
 
 # ============================================================
-#  🏋️  CHALLENGE — Build a Mini Portfolio Valuator
+#    CHALLENGE — Build a Mini Portfolio Valuator
 #
 #  Using only what you've learned above, complete this program.
 #

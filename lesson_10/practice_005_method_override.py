@@ -14,6 +14,14 @@ class Product:
 
 
 class Book(Product):
+    """
+    1. Method Override: The Book class overrides the parent's __init__ method to accept additional parameters
+    2. `super().__init__(title, price)`: Calls the parent class's constructor to initialize inherited attributes (title and price)
+    3. Additional Attributes:
+        self.author - specific to books only
+        self.publication_year - also specific to books
+    """
+
     def __init__(self, title, author, price):
         super().__init__(title, price)
         self.author = author

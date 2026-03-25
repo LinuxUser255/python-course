@@ -11,13 +11,7 @@ an imaginary person:
 print("Basic Dictionary")
 
 person = {
-    'name': 'John',
-    'age': 23,
-    'location': {
-        'city': 'New York',
-       'state': 'NY'
-    },
-    'married': False
+
 }
 
 print(person['location']['state'])
