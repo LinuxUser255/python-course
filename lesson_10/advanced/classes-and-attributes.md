@@ -5,6 +5,154 @@ There's no strict rule — it depends on the purpose of the class.
 
 ---
 
+**Here's the condensed answer, and guideline:**
+
+
+The gut-check ("is this parameter used in the body?") applies specifically to `__init__` — and specifically to *parameters*, not to the methods being `pass` stubs. `add_book`, `remove_book`, `search_books` being empty right now is just "not implemented yet," same as `filter_even` started as `pass`. That's a different, temporary state — nothing to apply the gut-check to *yet*, because there's no body to check. The gut-check matters once you *write* a method's body and need to decide what its parameter list and `self.` usage should look like.
+
+---
+
+**The concise rule, for `__init__` specifically:**
+
+> **For every parameter, find the line where it's used. If you can't find one, either delete the parameter or write the line that uses it.**
+>
+> **For every `self.attribute = ...` line, ask: "does the right side need a parameter, or is it a fixed/computed/empty starting value?"**
+> - Needs a parameter → `self.x = x` (the parameter name appears on the right)
+> - Fixed/computed/empty → `self.x = <literal value, or expression using OTHER self.attrs>` (no bare parameter name involved)
+
+**Quick reference table — three shapes you'll see constantly:**
+
+```python
+def __init__(self, a, b):
+    self.a = a              # 1:1 — parameter stored directly
+    self.c = a * b          # computed — uses parameters, but isn't itself a param
+    self.d = []             # fixed empty starting value — no parameter at all
+```
+
+### - Example code
+
+```python
+class Book:
+    def __init__(self, title: str, author: str) -> None:
+       self.title = title
+       self.author = author
+
+
+class Library:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.books = []
+
+   # methods for adding, removing, and searching books
+    def add_book(self, book: Book) -> None:
+        pass
+
+    def remove_book(self, book: Book) -> None:
+        pass
+        
+    def search_books(self, search_string: str) -> list[Book]:
+        pass
+```
+
+#### _Above Example Elaborated:_
+
+Walk through the checklist with a wider range of examples, so the pattern becomes recognizable across different shapes — not just the two lines from `Library`.
+
+**The checklist, restated:**
+
+For each line `self.x = <something>`, ask: **"What is `<something>`? Where does it come from?"** There are really only three possible answers, and each one tells you something different about whether `x`'s *name* should appear in the parameter list.
+
+---
+
+**Shape 1 — Direct pass-through (1:1)**
+
+The right side is *exactly* a parameter, unchanged.
+
+```python
+def __init__(self, title, author):
+    self.title = title    # right side IS the parameter `title` — needs `title` in signature
+    self.author = author  # same — needs `author`
+```
+
+This is `Book.__init__` — both lines are this shape. Check: is `title` in the parameter list? Yes. Is `author`? Yes. Done.
+
+---
+
+**Shape 2 — Computed from parameters (and/or other `self.` attributes)**
+
+The right side is an *expression* — arithmetic, string operations, etc. — built from things that *do* need to be parameters, but the attribute's *own name* (`x`) is new; it's not itself a parameter.
+
+```python
+def __init__(self, speed, strength):
+    self.speed = speed              # Shape 1
+    self.strength = strength        # Shape 1
+    self.power = speed * strength   # Shape 2 — `power` is NOT a parameter,
+                                     # but speed and strength (which ARE params) appear on the right
+```
+
+This is `Brawler.__init__`. Check: does `power` need to be a parameter? No — but the *ingredients* of the computation (`speed`, `strength`) do, and they're already covered by Shape 1 lines above. `power` itself never appears in the parameter list.
+
+A variant: computed from *other self attributes*, not raw parameters:
+
+```python
+def __init__(self, width, height):
+    self.width = width
+    self.height = height
+    self.area = self.width * self.height  # could write self.width/height OR width/height — both work here,
+                                            # since they're equal at this point in __init__
+```
+
+---
+
+**Shape 3 — Fixed/empty starting value (no parameter involved at all)**
+
+The right side is a **literal** — `[]`, `{}`, `0`, `True`, `None`, `""` — with *no* parameter name appearing anywhere in it.
+
+```python
+def __init__(self, name):
+    self.name = name      # Shape 1
+    self.books = []        # Shape 3 — `[]` is a literal, no parameter needed
+```
+
+This is `Library.__init__`. `books` never appears in the signature, because nothing about `[]` requires input from the caller.
+
+More examples of Shape 3 from your notes' `Trader` class:
+```python
+self.trade_log = []        # empty list — Shape 3
+self.win_rate = 0.0        # starting number — Shape 3
+self.sharpe_ratio = None    # placeholder — Shape 3
+```
+
+None of `trade_log`, `win_rate`, `sharpe_ratio` are parameters — and correctly so, since `Trader.__init__(self, name, strategy="momentum", risk_per_trade=0.02)` doesn't mention any of them.
+
+---
+
+**Putting it together — a quick worked example you haven't seen yet**
+
+Suppose you're writing a `BankAccount` class: *"takes an `owner` name and a `starting_balance`; also tracks a `transaction_count` starting at zero, and a computed `account_id` that's just the owner's name in uppercase."*
+
+Go line by line:
+
+```python
+def __init__(self, owner, starting_balance):
+    self.owner = owner                      # Shape 1: right side IS the parameter `owner`
+    self.balance = starting_balance         # Shape 1 (note: different name, same idea —
+                                             #          `starting_balance` param -> `balance` attr)
+    self.transaction_count = 0              # Shape 3: literal 0, no parameter
+    self.account_id = owner.upper()         # Shape 2: computed FROM the `owner` parameter
+```
+
+Check the signature against this: `owner` and `starting_balance` are both *used* (Shape 1 lines reference them directly). `transaction_count` and `account_id` are *not* parameters — `transaction_count` needs nothing (Shape 3), and `account_id` is *derived* from `owner` (Shape 2), not a separate input.
+
+---
+
+**The one-line summary**: every `self.x = ...` is either *"copy a parameter"* (Shape 1), *"calculate from parameters/attributes"* (Shape 2), or *"start with a known constant"* (Shape 3) — and only Shape 1 (and the *ingredients* of Shape 2) ever need to show up as parameters in `def __init__(self, ...)`.
+
+
+<br>
+
+## More examples
+
 **One-to-one: Data containers**
 
 When the class mainly holds data that's passed in:
