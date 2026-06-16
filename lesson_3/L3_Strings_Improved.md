@@ -21,7 +21,7 @@ As a QA engineer, strings are everywhere:
 - **Building test reports** — formatting test results into readable output
 - **Log analysis** — finding patterns in thousands of lines of log text
 
-Every technique in this lesson has a direct job application. Let's go.
+Every technique in this lesson has a direct job application. 
 
 ---
 
