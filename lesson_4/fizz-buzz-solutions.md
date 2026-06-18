@@ -6,7 +6,7 @@ Example One has a **critical logic bug**. Let me explain:
 
 ---
 
-## 🐛 **Example One - BROKEN**
+##  **Example One - BROKEN**
 
 ```python
 def fizz_buzz_example_one():
@@ -35,7 +35,7 @@ fizz_buzz_example_one()  # With number = 15
 
 ---
 
-## ✅ **Example Two - CORRECT**
+##  **Example Two - CORRECT**
 
 ```python
 def fizz_buzz_example_two():
@@ -59,7 +59,7 @@ def fizz_buzz_example_two():
 **Test it:**
 ```python
 fizz_buzz_example_two()  # With number = 15
-# Output: FizzBuzz  ✅ CORRECT!
+# Output: FizzBuzz  CORRECT!
 ```
 
 ---
@@ -77,7 +77,7 @@ When using `if/elif/else`, **check the most specific conditions first**:
 
 ---
 
-## 📊 **Side-by-Side Testing**
+##  **Side-by-Side Testing**
 
 ```python
 # Testing both functions with number = 15
@@ -90,7 +90,7 @@ elif 15 % 5 == 0:            # Never checked
 elif 15 % 3 == 0 and 15 % 5 == 0:  # Never reached!
     print("FizzBuzz")
 
-# Output: Fizz ❌
+# Output: Fizz x 
 
 
 # Example Two (CORRECT ORDER)
@@ -101,7 +101,7 @@ elif 15 % 3 == 0:            # Never checked (already handled above)
 elif 15 % 5 == 0:            # Never checked
     print("Buzz")
 
-# Output: FizzBuzz ✅
+# Output: FizzBuzz 
 ```
 
 ---
