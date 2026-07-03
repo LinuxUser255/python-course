@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Without functions
+# DEMO 4: NO FUNCTIONS
 # If I have 6 years, how many times do I copy
 # this if/else block?
 # 6 times. What if it has a bug?
@@ -12,7 +12,7 @@ year_2 = 2001
 #year_5 = 2004
 #year_6 = 2005
 
-# Check if year_1 is a leap year or not
+# CHECK IF YEAR_1 IS A LEAP YEAR OR NOT
 if year_1 % 4 == 0:
     if year_1 % 100 != 0:
         print(f'{year_1} is a leap year_1')

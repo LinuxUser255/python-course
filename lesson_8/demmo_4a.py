@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# DEMO 4: USING A FUNCTION
 # define the function to check if a leap year or not.
 def is_leap_year(year):
     if year % 4 == 0:
@@ -19,3 +20,5 @@ for year in [2000, 2001, 2002, 2003, 2004, 2005]:
 
 # this is what it's meant when someone says that
 # "Functions create re-usable code"
+for year in [2020, 2021, 2022, 2023, 2024, 2025]:
+    is_leap_year(year)

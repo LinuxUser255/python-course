@@ -8,6 +8,6 @@ import module_utils   # triggers module_utils' top-level code, but NOT its __mai
 
 print(f'runner.py __name__: {__name__}')  # This file IS __main__
 
-# Use the imported functions directly
+# USE THE IMPORTED FUNCTIONS DIRECTLY
 print(module_utils.validate_username("testuser"))  # True
 print(module_utils.validate_email("user@qa.com"))  # True
