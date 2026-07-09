@@ -1,31 +1,29 @@
+#!/usr/bin/env python3
 """
-Method overriding using Python's built-in super() function'
-Take the Dog and Cat classes you built in the last practice and
-override the greeting method to give the following output:
+Method Overriding Demonstration
 
-Dog: "Hello <NAME>, my name is <DOG_NAME> and I'm a dog! 🐶"
-Cat: "Hello <NAME>, my name is <CAT_NAME> the cat and I hate you. 😾"
+Shows how a child class can override a parent class's __init__ method
+and still reuse the parent's logic with super().
+
+The Book class overrides Product's __init__ to accept extra parameters,
+calls super().__init__() to set up the inherited attributes, then adds
+its own attributes on top.
 """
+
 
 class Product:
+
     def __init__(self, title, price):
-        self.title = title # book title (attribute)
-        self.price = price # book price (attribute)
+        self.title = title
+        self.price = price
 
 
 class Book(Product):
-    """
-    1. Method Override: The Book class overrides the parent's __init__ method to accept additional parameters
-    2. `super().__init__(title, price)`: Calls the parent class's constructor to initialize inherited attributes (title and price)
-    3. Additional Attributes:
-        self.author - specific to books only
-        self.publication_year - also specific to books
-    """
 
     def __init__(self, title, author, price):
         super().__init__(title, price)
         self.author = author
-        self.publication_year = 2022 # book publication year (attribute)
+        self.publication_year = 2022
 
     def print_book_info(self):
         print(f"Title: {self.title}, Author: {self.author}, Price: {self.price}")
